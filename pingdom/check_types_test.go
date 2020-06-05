@@ -21,6 +21,7 @@ func TestHttpCheckPutParams(t *testing.T) {
 		UserIds:               []int{123, 456},
 		TeamIds:               []int{789},
 		ResponseTimeThreshold: 2300,
+		SSLDownDaysBefore:     3,
 	}
 	want := map[string]string{
 		"name":                   "fake check",
@@ -42,6 +43,7 @@ func TestHttpCheckPutParams(t *testing.T) {
 		"userids":                "123,456",
 		"teamids":                "789",
 		"responsetime_threshold": "2300",
+		"ssl_down_days_before":   "3",
 	}
 
 	params := check.PutParams()
