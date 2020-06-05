@@ -49,7 +49,7 @@ func getConfig() credentials {
 
 func main() {
 	client, err := pingdom.NewClientWithConfig(pingdom.ClientConfig{
-		APIToken: "api_token",
+		APIToken: os.Getenv("PINGDOM_API_TOKEN"),
 	})
 	if err != nil {
 		fmt.Println("Error", err)
@@ -61,7 +61,7 @@ func main() {
 	fmt.Println("All checks:", checks)
 
 	// Create a new http check
-	newCheck := pingdom.HttpCheck{Name: "Test Check", Hostname: "example.com", Resolution: 5}
+	newCheck := pingdom.HttpCheck{Name: "Test Check", Hostname: "example.com", Encryption: true, Resolution: 5, SSLDownDaysBefore: 10}
 	check, _ := client.Checks.Create(&newCheck)
 	fmt.Println("Created check:", check) // {ID, Name}
 
